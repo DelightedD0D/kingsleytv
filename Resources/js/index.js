@@ -548,7 +548,7 @@ $(document).ready(function () {
     });
 
 
-})( jQuery, window.History );
+});
 
 
 
