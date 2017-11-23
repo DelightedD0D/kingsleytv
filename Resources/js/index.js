@@ -530,33 +530,24 @@ $(document).ready(function () {
             }
             
             History.pushState(null, 'About', aboutHref);
-            
-            $.get(aboutHref, function (data) {
-                var content = $(data).find('.container-contents').html();
-                $('.container').html(content);
-            });
-            
+            loadContent(aboutHref);
         }
-    }; 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    };
+
+    function loadContent(url){
+        $.get(url, function (data) {
+            var content = $(data).find('.container-contents').html();
+            $('.container').html(content);
+        });
+    }
+
+    History.Adapter.bind( window, "statechange", function() {
+
+        var state = History.getState();
+        loadContent(state.url);
+    });
+
+
 })( jQuery, window.History );
 
 
